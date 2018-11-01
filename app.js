@@ -8,7 +8,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var pinged = require('./ping.js');
 var app = express();
   function compile(str,path){
     return styles(str)
@@ -38,7 +38,7 @@ app.get('/', function(req,res){
 app.listen(3000);
 console.log("Ready");
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(pinged, function(req, res, next) {
   next(createError(404));
 });
 

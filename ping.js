@@ -1,7 +1,7 @@
-/**
- * Created by fl8328 on 31/10/2018.
- */
-var ping = require(ping);
+// /**
+//  * Created by fl8328 on 31/10/2018.
+//  */
+var ping = require('ping');
 var N533 = ['rg-n425-sfb'];
 var N530 = ['rg-n530-a01','rg-n530-a02','rg-n530-a03','rg-n530-a04','rg-n530-a05','rg-n530-a06','rg-n530-a07','rg-n530-a08','rg-n530-a09','rg-n530-a10','rg-n530-a11','rg-n530-a12',
             'rg-n530-b01','rg-n530-b02','rg-n530-b03','rg-n530-b04','rg-n530-b05','rg-n530-b06','rg-n530-b07','rg-n530-b08','rg-n530-b09','rg-n530-b10','rg-n530-b11','rg-n530-b12',
@@ -34,52 +34,47 @@ var N424 = ['rg-n424-01','rg-n424-02','rg-n424-03','rg-n424-04','rg-n424-05','rg
             'rg-n424-pod'];
 var N427 = ['rg-n427-01','rg-n427-02', 'rg-n427-03', 'rg-n427-pod', 'rg-n427-z1'];
 
+var msg = '';
 
 N533.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N530.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N528N529.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N527.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N523.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N519.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N424.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
     });
 });
 N427.forEach(function(host){
     ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-        console.log(msg);
+        msg= isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead' ;
     });
 });
+
+exports.msg = msg;

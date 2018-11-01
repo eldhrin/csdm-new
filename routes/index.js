@@ -1,6 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var ping = require ('ping');
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+var msg = '';
+var test = 'test';
+var pinged = require('./../ping.js');
+
+MongoClient.connect(url, {useNewUrlParser: true}, function(err, db){
+    if(err) throw err;
+    var dbo = db.db("csdm");
+    console.log("Connected to DB");
+});
 
 var N533 = ['rg-n533a-01','rg-n533-a01','rg-n533-a02','rg-n533-a03','rg-n533-a04','rg-n533-a05','rg-n533-a06','rg-n533-a07','rg-n533-a08',
             'rg-n533-b01','rg-n533-b02','rg-n533-b03','rg-n533-b04','rg-n533-b05','rg-n533-b06','rg-n533-b07','rg-n533-n08',
@@ -60,41 +71,52 @@ router.get('/', function(req, res, next) {
 
 router.get('/:name', function(req, res, next) {
     var name = req.params.name;
-    if(name === 'N533'){
+    if (name === 'N533') {
         name = N533;
     }
-    if(name === 'N530'){
+    if (name === 'N530') {
         name = N530;
     }
-    if(name === 'N528-529'){
+    if (name === 'N528-529') {
         name = N528N529;
     }
-    if(name === 'N527'){
+    if (name === 'N527') {
         name = N527;
-    } if(name === 'N523'){
+    }
+    if (name === 'N523') {
         name = N523;
     }
-    if(name === 'N519'){
+    if (name === 'N519') {
         name = N519;
     }
-    if(name === 'N424'){
+    if (name === 'N424') {
         name = N424;
     }
-    if(name === 'N427'){
+    if (name === 'N427') {
         name = N427;
     }
 
 
-    name.forEach(function(host){
-        ping.sys.probe(host, function(isAlive){
-            var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+    name.forEach(function (host){
+        ping.sys.probe(host, function (isAlive) {
+            msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
             console.log(msg);
         });
-
     });
-    res.render('room', { title: name});
 
+    // var query = {rid: name};
+    // MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+    //     if (err) throw err;
+    //     var dbo = db.db("csdm");
+    //     console.log("Connected to DB");
+    //     dbo.collection("csdm").find(query).toArray(function (err, result) {
+    //         if (err) throw err;
+    //         console.log(result);
+    //     });
+
+        res.render('room', {title: req.params.name, p:msg});
 
 
 });
+
 module.exports = router;
